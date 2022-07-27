@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a sample weather app using OpenWeather API
+to run this application you need ruby 3.1.2 installed
+use the following if using RVM.
 
-Things you may want to cover:
+```bash
+rvm install 3.1.2
+```
 
-* Ruby version
+And also you need to install the bundler gem v2.3.19
+```bash
+gem install bundler -v 2.3.19
+```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Then just run `rails server` and go to [localhost:3000](http://localhost:3000)
