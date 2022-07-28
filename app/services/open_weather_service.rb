@@ -15,7 +15,8 @@ class OpenWeatherService < ApplicationService
   end
 
   def call
-    self.class.get(url_with_params)
+    response = self.class.get(url_with_params)
+    success_response(response)
   rescue SocketError
     error_response('OpenWeather API service is unavailable')
   end
@@ -27,6 +28,6 @@ class OpenWeatherService < ApplicationService
   end
 
   def url_with_params
-    "/onecall?lat=#{lat}&lon=#{lon}&exclude=#{exclusions}&appid=#{API_KEY}"
+    "/onecall?lat=#{lat}&lon=#{lon}&units=metric&exclude=#{exclusions}&appid=#{API_KEY}"
   end
 end

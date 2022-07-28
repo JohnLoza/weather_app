@@ -9,7 +9,7 @@ class ApplicationService
 
   def success_response(data, message = nil)
     {
-      status: :success,
+      success?: true,
       message: message || 'successful operation',
       data: data,
       error: nil
@@ -18,7 +18,7 @@ class ApplicationService
 
   def error_response(error, message = nil)
     {
-      status: :error,
+      success?: false,
       message: message || 'invalid operation',
       data: nil,
       error: error

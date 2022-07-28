@@ -11,7 +11,8 @@ class ReservamosPlacesService < ApplicationService
   end
 
   def call
-    self.class.get(url_with_params)
+    response = self.class.get(url_with_params)
+    success_response(response)
   rescue SocketError
     error_response('Reservamos Places API service is unavailable')
   end

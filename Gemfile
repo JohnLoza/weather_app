@@ -72,4 +72,5 @@ group :test do
 end
 
 gem 'pry-rails'
+gem 'pry-nav'
 gem 'httparty', '~> 0.20'
