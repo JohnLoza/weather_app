@@ -74,3 +74,4 @@ end
 gem 'pry-rails'
 gem 'pry-nav'
 gem 'httparty', '~> 0.20'
+gem 'bootstrap', '~> 5.2.0'

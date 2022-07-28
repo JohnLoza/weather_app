@@ -10,9 +10,10 @@ class PronosticService < ApplicationService
 
   def call
     @places = ReservamosPlacesService.call(@query)
-    return error_response(@places[:error]) unless @places[:success?]
+    return error_response(@places[:error]) unless @places[:success]
 
     fill_pronostics
+    @pronostics.any? ? success_response(@pronostics) : success_response([], 'no results found')
   end
 
   private
@@ -28,7 +29,7 @@ class PronosticService < ApplicationService
 
   def pronostic(place)
     weather_result = OpenWeatherService.call(place['lat'], place['long'])
-    return nil unless weather_result[:success?]
+    return nil unless weather_result[:success]
 
     {
       slug: place['city_slug'],
@@ -48,6 +49,5 @@ class PronosticService < ApplicationService
     end
 
     @pronostics.reject!(&:nil?)
-    @pronostics
   end
 end
