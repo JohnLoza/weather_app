@@ -39,9 +39,15 @@ class PronosticService < ApplicationService
 
     {
       slug: place['city_slug'],
-      city_name: place['city_name'],
+      city: place['city_name'],
+      state: place['state'],
+      country: place['country'],
       daily: daily_pronostic(weather_result)
     }
+  end
+
+  def filter_by_country
+    @places[:data].select! { |place| place['country'] == 'México' }
   end
 
   def filter_cities
@@ -49,6 +55,7 @@ class PronosticService < ApplicationService
   end
 
   def fill_pronostics
+    filter_by_country
     filter_cities
     @places[:data][0..2].each do |place|
       @pronostics << pronostic(place)
