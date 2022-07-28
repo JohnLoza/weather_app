@@ -18,11 +18,17 @@ class PronosticService < ApplicationService
 
   private
 
+  def date_plus_days(days_amount)
+    date = Time.now + days_amount.days
+    date.strftime('%a %d %b')
+  end
+
   def daily_pronostic(weather_result)
-    weather_result[:data]['daily'].map do |daily_result|
+    weather_result[:data]['daily'].map.with_index do |daily_result, index|
       {
         min: daily_result['temp']['min'],
-        max: daily_result['temp']['max']
+        max: daily_result['temp']['max'],
+        date: date_plus_days(index)
       }
     end
   end

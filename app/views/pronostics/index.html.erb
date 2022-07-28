@@ -1,0 +1,11 @@
+<%= form_for(:pronostic, url: api_v1_pronostics_search_path, html: { class: 'pronostics-search-form' }) do |f| %>
+  <div class="form-group">
+    <%= f.text_field :query, class: 'form-control', required: true, maxlength: 20,
+                     placeholder: 'City name' %>
+  </div>
+  <div class="form-group mt-2">
+    <%= f.submit :Search, class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<section class="pronostic-results row mt-4"></section>
