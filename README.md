@@ -13,4 +13,5 @@ And also you need to install the bundler gem v2.3.19
 gem install bundler -v 2.3.19
 ```
 
-Then just run `rails server` and go to [localhost:3000](http://localhost:3000)
+Then run `rails server` and go to [localhost:3000](http://localhost:3000),
+or you could use `curl http://localhost:3000/api/v1/pronostics/search\?query\=Guadalajara`.
