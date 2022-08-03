@@ -23,14 +23,20 @@ class PronosticService < ApplicationService
     date.strftime('%a %d %b')
   end
 
-  def daily_pronostic(weather_result)
-    weather_result[:data]['daily'].map.with_index do |daily_result, index|
-      {
-        min: daily_result['temp']['min'],
-        max: daily_result['temp']['max'],
-        date: date_plus_days(index)
-      }
-    end
+  def sort_by_temp(result_set)
+   result_set.sort { |a, b| a[:max] <=> b[:max] }
+  end
+
+  def daily_pronostic(weather_result, sort_by_temp = false)
+    result =
+      weather_result[:data]['daily'].map.with_index do |daily_result, index|
+        {
+          min: daily_result['temp']['min'],
+          max: daily_result['temp']['max'],
+          date: date_plus_days(index)
+        }
+      end
+    sort_by_temp ? sort_by_temp(result) : result
   end
 
   def pronostic(place)
@@ -42,7 +48,7 @@ class PronosticService < ApplicationService
       city: place['city_name'],
       state: place['state'],
       country: place['country'],
-      daily: daily_pronostic(weather_result)
+      daily: daily_pronostic(weather_result, true)
     }
   end
 
